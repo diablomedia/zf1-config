@@ -1,0 +1,4 @@
+/tests/Zend/Config/Writer/temp/*
+/vendor/*
+/composer.lock
+/clover.xml
