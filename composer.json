@@ -37,5 +37,9 @@
         "test": "phpunit ./tests",
         "test-with-coverage": "phpunit --coverage-clover=clover.xml ./tests",
         "phpstan": "phpstan analyze -l7 -c phpstan.neon --no-progress ./src --ansi"
+    },
+    "suggest": {
+        "ext-SimpleXML": "Used for reading/writing XML",
+        "ext-dom": "Used for reading/writing XML"
     }
 }
