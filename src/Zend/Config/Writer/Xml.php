@@ -35,6 +35,10 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
      */
     public function render()
     {
+        if ($this->_config === null) {
+            throw new Zend_Config_Exception('No config was set');
+        }
+
         $xml         = new SimpleXMLElement('<zend-config xmlns:zf="' . Zend_Config_Xml::XML_NAMESPACE . '"/>');
         $extends     = $this->_config->getExtends();
         $sectionName = $this->_config->getSectionName();
@@ -59,7 +63,13 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
             }
         }
 
-        $dom = dom_import_simplexml($xml)->ownerDocument;
+        $dom = dom_import_simplexml($xml);
+
+        if ($dom === false) {
+            throw new Zend_Config_Exception('Error importing XML');
+        }
+
+        $dom = $dom->ownerDocument;
         $dom->formatOutput = true;
 
         $xmlString = $dom->saveXML();
@@ -78,6 +88,7 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
     protected function _addBranch(Zend_Config $config, SimpleXMLElement $xml, SimpleXMLElement $parent)
     {
         $branchType = null;
+        $branchName = '';
 
         foreach ($config as $key => $value) {
             if ($branchType === null) {

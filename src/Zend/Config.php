@@ -86,7 +86,7 @@ class Zend_Config implements Countable, Iterator
      *
      * Is null if there was no error while file loading
      *
-     * @var string
+     * @var string|null
      */
     protected $_loadFileErrorStr = null;
 
@@ -269,7 +269,7 @@ class Zend_Config implements Countable, Iterator
 
     /**
      * Defined by Iterator interface
-     *
+     * @return void
      */
     public function next()
     {
@@ -283,7 +283,7 @@ class Zend_Config implements Countable, Iterator
 
     /**
      * Defined by Iterator interface
-     *
+     * @return void
      */
     public function rewind()
     {
@@ -332,7 +332,7 @@ class Zend_Config implements Countable, Iterator
      * the current config.
      *
      * @param Zend_Config $merge
-     * @return Zend_Config
+     * @return $this
      */
     public function merge(Zend_Config $merge)
     {
@@ -359,7 +359,7 @@ class Zend_Config implements Countable, Iterator
      * Prevent any more modifications being made to this instance. Useful
      * after merge() has been used to merge multiple Zend_Config objects
      * into one object which should then not be modified again.
-     *
+     * @return void
      */
     public function setReadOnly()
     {
@@ -437,6 +437,7 @@ class Zend_Config implements Countable, Iterator
      * @param string $errstr
      * @param string $errfile
      * @param integer $errline
+     * @return void
      */
     public function _loadFileErrorHandler($errno, $errstr, $errfile, $errline)
     {

@@ -53,7 +53,7 @@ class Zend_Config_Xml extends Zend_Config
      *
      * Note that the keys in $section will override any keys of the same
      * name in the sections that have been included via "extends".
-     * 
+     *
      * The $options parameter may be provided as either a boolean or an array.
      * If provided as a boolean, this sets the $allowModifications option of
      * Zend_Config. If provided as an array, there are two configuration
@@ -66,7 +66,7 @@ class Zend_Config_Xml extends Zend_Config
      *
      * @param  string        $xml     XML file or string to process
      * @param  mixed         $section Section to process
-     * @param  array|boolean $options 
+     * @param  array|boolean $options
      * @throws Zend_Config_Exception When xml is not set or cannot be loaded
      * @throws Zend_Config_Exception When section $sectionName cannot be found in $xml
      */
@@ -218,7 +218,12 @@ class Zend_Config_Xml extends Zend_Config
                 throw new Zend_Config_Exception("A node with a 'const' childnode may not have any other children");
             }
 
-            $dom                 = dom_import_simplexml($xmlObject);
+            $dom = dom_import_simplexml($xmlObject);
+
+            if ($dom === false) {
+                throw new Zend_Config_Exception('Error importing XML');
+            }
+
             $namespaceChildNodes = array();
 
             // We have to store them in an array, as replacing nodes will
@@ -233,7 +238,7 @@ class Zend_Config_Xml extends Zend_Config
                 switch ($node->localName) {
                     case 'const':
                         if (!$node->hasAttributeNS(self::XML_NAMESPACE, 'name')) {
-                            throw new Zend_Config_Exception("Misssing 'name' attribute in 'const' node");
+                            throw new Zend_Config_Exception("Missing 'name' attribute in 'const' node");
                         }
 
                         $constantName = $node->getAttributeNS(self::XML_NAMESPACE, 'name');

@@ -23,7 +23,7 @@ install:
 
 stages:
   - test
-  - phpstan analysis
+  - static analysis
   - test with coverage
 
 before_script:
@@ -37,15 +37,23 @@ jobs:
   allow_failures:
     - php: nightly
   include:
-    - stage: phpstan analysis
+    - stage: static analysis
       php: 7.1
       env: TMPDIR=/tmp USE_XDEBUG=false
       script:
         - composer phpstan
+        - composer phan
+        - composer psalm
     - stage: test with coverage
       php: 7.1
-      env: TMPDIR=/tmp USE_XDEBUG=true
+      env: TMPDIR=/tmp USE_XDEBUG=true CC_TEST_REPORTER_ID=ec76409b1e3d0a9f7e693fdcc5da91447eb34e2a207733f7ec0b1cdf549a726a
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
       script:
         - composer test-with-coverage
       after_success:
         - bash <(curl -s https://codecov.io/bash) -f ./clover.xml
+      after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

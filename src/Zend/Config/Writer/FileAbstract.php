@@ -34,7 +34,7 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
     /**
      * Filename to write to
      *
-     * @var string
+     * @var string|null
      */
     protected $_filename = null;
 
@@ -75,7 +75,7 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
      * Write configuration to file.
      *
      * @param string $filename
-     * @param Zend_Config $config
+     * @param Zend_Config|null $config
      * @param bool $exclusiveLock
      * @return void
      */
