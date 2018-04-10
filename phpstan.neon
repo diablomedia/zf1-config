@@ -3,4 +3,3 @@ parameters:
         - '#Casting to .+ something that.s already .+\.#'
         - '#Argument of an invalid type DOMDocument\|false\|SimpleXMLElement supplied for foreach, only iterables are supported\.#'
         - '#Parameter \#1 \$element of method Zend_Config_Xml::_processExtends\(\) expects SimpleXMLElement, DOMDocument\|false\|SimpleXMLElement given\.#'
-        - '#Variable \$branchName might not be defined\.#'

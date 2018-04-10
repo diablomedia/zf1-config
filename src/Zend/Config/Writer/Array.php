@@ -35,6 +35,10 @@ class Zend_Config_Writer_Array extends Zend_Config_Writer_FileAbstract
      */
     public function render()
     {
+        if ($this->_config === null) {
+            throw new Zend_Config_Exception('No config was set');
+        }
+
         $data        = $this->_config->toArray();
         $sectionName = $this->_config->getSectionName();
 

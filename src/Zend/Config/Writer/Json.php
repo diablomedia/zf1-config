@@ -48,7 +48,7 @@ class Zend_Config_Writer_Json extends Zend_Config_Writer_FileAbstract
      * Set prettyPrint flag
      *
      * @param  bool $flag PrettyPrint flag
-     * @return Zend_Config_Writer_Json
+     * @return $this
      */
     public function setPrettyPrint($flag)
     {
@@ -64,6 +64,10 @@ class Zend_Config_Writer_Json extends Zend_Config_Writer_FileAbstract
      */
     public function render()
     {
+        if ($this->_config === null) {
+            throw new Zend_Config_Exception('No config was set');
+        }
+
         $data        = $this->_config->toArray();
         $sectionName = $this->_config->getSectionName();
         $extends     = $this->_config->getExtends();

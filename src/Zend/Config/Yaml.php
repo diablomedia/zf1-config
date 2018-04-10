@@ -89,7 +89,7 @@ class Zend_Config_Yaml extends Zend_Config
      * Set callback for decoding YAML
      *
      * @param  callable $yamlDecoder the decoder to set
-     * @return Zend_Config_Yaml
+     * @return $this
      */
     public function setYamlDecoder($yamlDecoder)
     {
@@ -279,7 +279,7 @@ class Zend_Config_Yaml extends Zend_Config
         $inIndent = false;
         while (key($lines) !== null) {
             $line = current($lines);
-            $lineno = key($lines) + 1;
+            $lineno = (int) key($lines) + 1;
             next($lines);
 
             $line = rtrim(preg_replace("/#.*$/", "", $line));
@@ -344,18 +344,18 @@ class Zend_Config_Yaml extends Zend_Config
      * Parse values
      *
      * @param string $value
-     * @return string
+     * @return string|bool|null
      */
     protected static function _parseValue($value)
     {
         $value = trim($value);
 
         // remove quotes from string.
-        if ('"' == $value['0']) {
+        if ('"' == $value[0]) {
             if ('"' == $value[strlen($value) -1]) {
                 $value = substr($value, 1, -1);
             }
-        } elseif ('\'' == $value['0'] && '\'' == $value[strlen($value) -1]) {
+        } elseif ('\'' == $value[0] && '\'' == $value[strlen($value) -1]) {
             $value = strtr($value, array("''" => "'", "'" => ''));
         }
 

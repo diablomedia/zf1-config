@@ -45,7 +45,7 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
      * Set the nest separator
      *
      * @param  string $separator
-     * @return Zend_Config_Writer_Ini
+     * @return $this
      */
     public function setNestSeparator($separator)
     {
@@ -61,7 +61,7 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
      * into the global namespace of the INI file.
      *
      * @param  bool $withoutSections
-     * @return Zend_Config_Writer_Ini
+     * @return $this
      */
     public function setRenderWithoutSections($withoutSections=true)
     {
@@ -77,6 +77,10 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
      */
     public function render()
     {
+        if ($this->_config === null) {
+            throw new Zend_Config_Exception('No config was set');
+        }
+
         $iniString   = '';
         $extends     = $this->_config->getExtends();
         $sectionName = $this->_config->getSectionName();
@@ -114,6 +118,7 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
      * Add a branch to an INI string recursively
      *
      * @param  Zend_Config $config
+     * @param  array $parents
      * @return string
      */
     protected function _addBranch(Zend_Config $config, $parents = array())
