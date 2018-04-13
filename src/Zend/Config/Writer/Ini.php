@@ -63,7 +63,7 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
      * @param  bool $withoutSections
      * @return $this
      */
-    public function setRenderWithoutSections($withoutSections=true)
+    public function setRenderWithoutSections($withoutSections = true)
     {
         $this->_renderWithoutSections = (bool)$withoutSections;
         return $this;
@@ -85,28 +85,28 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
         $extends     = $this->_config->getExtends();
         $sectionName = $this->_config->getSectionName();
 
-        if($this->_renderWithoutSections == true) {
+        if ($this->_renderWithoutSections == true) {
             $iniString .= $this->_addBranch($this->_config);
-        } else if (is_string($sectionName)) {
+        } elseif (is_string($sectionName)) {
             $iniString .= '[' . $sectionName . ']' . "\n"
-                       .  $this->_addBranch($this->_config)
-                       .  "\n";
+                       . $this->_addBranch($this->_config)
+                       . "\n";
         } else {
             $config = $this->_sortRootElements($this->_config);
             foreach ($config as $sectionName => $data) {
                 if (!($data instanceof Zend_Config)) {
                     $iniString .= $sectionName
-                               .  ' = '
-                               .  $this->_prepareValue($data)
-                               .  "\n";
+                               . ' = '
+                               . $this->_prepareValue($data)
+                               . "\n";
                 } else {
                     if (isset($extends[$sectionName])) {
                         $sectionName .= ' : ' . $extends[$sectionName];
                     }
 
                     $iniString .= '[' . $sectionName . ']' . "\n"
-                               .  $this->_addBranch($data)
-                               .  "\n";
+                               . $this->_addBranch($data)
+                               . "\n";
                 }
             }
         }
@@ -132,9 +132,9 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
                 $iniString .= $this->_addBranch($value, $group);
             } else {
                 $iniString .= implode($this->_nestSeparator, $group)
-                           .  ' = '
-                           .  $this->_prepareValue($value)
-                           .  "\n";
+                           . ' = '
+                           . $this->_prepareValue($value)
+                           . "\n";
             }
         }
 
@@ -154,7 +154,7 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
         } elseif (is_bool($value)) {
             return ($value ? 'true' : 'false');
         } elseif (strpos($value, '"') === false) {
-            return '"' . $value .  '"';
+            return '"' . $value . '"';
         } else {
             throw new Zend_Config_Exception('Value can not contain double quotes "');
         }
@@ -171,7 +171,7 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
     protected function _sortRootElements(Zend_Config $config)
     {
         $configArray = $config->toArray();
-        $sections = array();
+        $sections    = array();
 
         // remove sections from config array
         foreach ($configArray as $key => $value) {

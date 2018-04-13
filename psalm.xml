@@ -21,6 +21,10 @@
                 <file name="src/Zend/Config/Xml.php" />
             </errorLevel>
         </InvalidArgument>
-
+        <DocblockTypeContradiction>
+            <errorLevel type="info">
+                <file name="src/Zend/Config/Json.php" />
+            </errorLevel>
+        </DocblockTypeContradiction>
     </issueHandlers>
 </psalm>

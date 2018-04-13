@@ -158,7 +158,7 @@ class Zend_Config_Writer_IniTest extends PHPUnit\Framework\TestCase
     {
         $config = new Zend_Config(array('test' => 'foo', 'bar' => array(0 => 'baz', 1 => 'foo')));
 
-        $writer = new Zend_Config_Writer_Ini();
+        $writer    = new Zend_Config_Writer_Ini();
         $iniString = $writer->setConfig($config)->render();
 
         $expected = <<<ECS
@@ -247,7 +247,7 @@ ECS;
             'five'  => 'element'
         ));
 
-        $writer = new Zend_Config_Writer_Ini;
+        $writer    = new Zend_Config_Writer_Ini;
         $iniString = $writer->setConfig($config)->render($config);
 
         $expected = <<<ECS

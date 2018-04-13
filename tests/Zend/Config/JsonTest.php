@@ -36,13 +36,13 @@ class Zend_Config_JsonTest extends PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-        $this->_iniFileConfig = dirname(__FILE__) . '/_files/config.json';
-        $this->_iniFileAllSectionsConfig = dirname(__FILE__) . '/_files/allsections.json';
-        $this->_iniFileCircularConfig = dirname(__FILE__) . '/_files/circular.json';
+        $this->_iniFileConfig                    = dirname(__FILE__) . '/_files/config.json';
+        $this->_iniFileAllSectionsConfig         = dirname(__FILE__) . '/_files/allsections.json';
+        $this->_iniFileCircularConfig            = dirname(__FILE__) . '/_files/circular.json';
         $this->_iniFileMultipleInheritanceConfig = dirname(__FILE__) . '/_files/multipleinheritance.json';
-        $this->_nonReadableConfig = dirname(__FILE__) . '/_files/nonreadable.json';
-        $this->_iniFileNoSectionsConfig = dirname(__FILE__) . '/_files/nosections.json';
-        $this->_iniFileInvalid = dirname(__FILE__) . '/_files/invalid.json';
+        $this->_nonReadableConfig                = dirname(__FILE__) . '/_files/nonreadable.json';
+        $this->_iniFileNoSectionsConfig          = dirname(__FILE__) . '/_files/nosections.json';
+        $this->_iniFileInvalid                   = dirname(__FILE__) . '/_files/invalid.json';
     }
 
     public function testLoadSingleSection()
@@ -112,7 +112,6 @@ class Zend_Config_JsonTest extends PHPUnit\Framework\TestCase
 
         $this->assertEquals('otherStaging', $config->only_in);
         $this->assertEquals('dbstaging', $config->db->name);
-
     }
 
     public function testCanRetrieveAllSections()
@@ -148,7 +147,7 @@ class Zend_Config_JsonTest extends PHPUnit\Framework\TestCase
     {
         $this->expectException('Zend_Config_Exception');
         $this->expectExceptionMessage('not set');
-        $config = new Zend_Config_Json('','');
+        $config = new Zend_Config_Json('', '');
     }
 
     public function testRaisesErrorOnAttemptsToExtendMultipleSectionsAtOnce()
@@ -161,14 +160,14 @@ class Zend_Config_JsonTest extends PHPUnit\Framework\TestCase
     public function testRaisesErrorWhenSectionNotFound()
     {
         try {
-            $config = new Zend_Config_Json($this->_iniFileConfig,array('all', 'notthere'));
+            $config = new Zend_Config_Json($this->_iniFileConfig, array('all', 'notthere'));
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertContains('cannot be found', $expected->getMessage());
         }
 
         try {
-            $config = new Zend_Config_Json($this->_iniFileConfig,'notthere');
+            $config = new Zend_Config_Json($this->_iniFileConfig, 'notthere');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertContains('cannot be found', $expected->getMessage());
@@ -219,7 +218,7 @@ class Zend_Config_JsonTest extends PHPUnit\Framework\TestCase
 
     public function testAllowsPassingJsonStringsToConstructor()
     {
-        $json =<<<EOJ
+        $json = <<<EOJ
 {"all":{"foo":"bar"},"staging":{"_extends":"all","bar":"baz"},"debug":{"_extends":"all","debug":true}}
 EOJ;
         $config = new Zend_Config_Json($json, 'debug');
@@ -230,7 +229,7 @@ EOJ;
 
     public function testProcessesSectionsWithSingleValues()
     {
-        $json = '{"all":"values"}';
+        $json   = '{"all":"values"}';
         $config = new Zend_Config_Json($json, 'all');
         $this->assertEquals('values', $config->all);
     }
@@ -246,7 +245,7 @@ EOJ;
         if (!defined('ZEND_CONFIG_JSON_ENV_INT')) {
             define('ZEND_CONFIG_JSON_ENV_INT', 42);
         }
-        $json = '{"env":"ZEND_CONFIG_JSON_ENV","path":"ZEND_CONFIG_JSON_ENV_PATH/tests","int":ZEND_CONFIG_JSON_ENV_INT}';
+        $json   = '{"env":"ZEND_CONFIG_JSON_ENV","path":"ZEND_CONFIG_JSON_ENV_PATH/tests","int":ZEND_CONFIG_JSON_ENV_INT}';
         $config = new Zend_Config_Json($json);
         $this->assertEquals(ZEND_CONFIG_JSON_ENV, $config->env);
         $this->assertEquals(ZEND_CONFIG_JSON_ENV_PATH . '/tests', $config->path);
@@ -258,7 +257,7 @@ EOJ;
         if (!defined('ZEND_CONFIG_JSON_ENV')) {
             define('ZEND_CONFIG_JSON_ENV', 'testing');
         }
-        $json = '{"env":"ZEND_CONFIG_JSON_ENV"}';
+        $json   = '{"env":"ZEND_CONFIG_JSON_ENV"}';
         $config = new Zend_Config_Json($json, null, array('ignore_constants' => true));
         $this->assertEquals('ZEND_CONFIG_JSON_ENV', $config->env);
     }

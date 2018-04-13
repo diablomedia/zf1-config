@@ -116,7 +116,7 @@ class Zend_Config_Writer_ArrayTest extends PHPUnit\Framework\TestCase
     {
         $config = new Zend_Config(array('test' => 'foo', 'bar' => array(0 => 'baz', 1 => 'foo')));
 
-        $writer = new Zend_Config_Writer_Array();
+        $writer       = new Zend_Config_Writer_Array();
         $configString = $writer->setConfig($config)->render();
 
 

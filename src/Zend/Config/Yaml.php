@@ -32,7 +32,7 @@ class Zend_Config_Yaml extends Zend_Config
     /**
      * Attribute name that indicates what section a config extends from
      */
-    const EXTENDS_NAME = "_extends";
+    const EXTENDS_NAME = '_extends';
 
     /**
      * Whether to skip extends or not
@@ -128,7 +128,7 @@ class Zend_Config_Yaml extends Zend_Config
             throw new Zend_Config_Exception('Filename is not set');
         }
 
-        $ignoreConstants    = $staticIgnoreConstants = self::ignoreConstants();
+        $ignoreConstants    = $staticIgnoreConstants    = self::ignoreConstants();
         $allowModifications = false;
         if (is_bool($options)) {
             $allowModifications = $options;
@@ -178,7 +178,7 @@ class Zend_Config_Yaml extends Zend_Config
 
         if (null === $config) {
             // decode failed
-            throw new Zend_Config_Exception("Error parsing YAML data");
+            throw new Zend_Config_Exception('Error parsing YAML data');
         }
 
         if (null === $section) {
@@ -235,7 +235,7 @@ class Zend_Config_Yaml extends Zend_Config
             throw new Zend_Config_Exception(sprintf('Section "%s" cannot be found', $section));
         }
 
-        $thisSection  = $data[$section];
+        $thisSection = $data[$section];
 
         if (is_array($thisSection) && isset($thisSection[self::EXTENDS_NAME])) {
             $this->_assertValidExtend($section, $thisSection[self::EXTENDS_NAME]);
@@ -278,16 +278,16 @@ class Zend_Config_Yaml extends Zend_Config
         $config   = array();
         $inIndent = false;
         while (key($lines) !== null) {
-            $line = current($lines);
+            $line   = current($lines);
             $lineno = (int) key($lines) + 1;
             next($lines);
 
-            $line = rtrim(preg_replace("/#.*$/", "", $line));
+            $line = rtrim(preg_replace('/#.*$/', '', $line));
             if (strlen($line) == 0) {
                 continue;
             }
 
-            $indent = strspn($line, " ");
+            $indent = strspn($line, ' ');
 
             // line without the spaces
             $line = trim($line);
@@ -310,17 +310,17 @@ class Zend_Config_Yaml extends Zend_Config
                 // key: value
                 if (strlen($m[2])) {
                     // simple key: value
-                    $value = preg_replace("/#.*$/", "", $m[2]);
+                    $value = preg_replace('/#.*$/', '', $m[2]);
                     $value = self::_parseValue($value);
                 } else {
                     // key: and then values on new lines
                     $value = self::_decodeYaml($currentIndent + 1, $lines);
                     if (is_array($value) && !count($value)) {
-                        $value = "";
+                        $value = '';
                     }
                 }
                 $config[$m[1]] = $value;
-            } elseif ($line[0] == "-") {
+            } elseif ($line[0] == '-') {
                 // item in the list:
                 // - FOO
                 if (strlen($line) > 2) {
@@ -333,7 +333,8 @@ class Zend_Config_Yaml extends Zend_Config
             } else {
                 throw new Zend_Config_Exception(sprintf(
                     'Error parsing YAML at line %d - unsupported syntax: "%s"',
-                    $lineno, $line
+                    $lineno,
+                    $line
                 ));
             }
         }
@@ -352,10 +353,10 @@ class Zend_Config_Yaml extends Zend_Config
 
         // remove quotes from string.
         if ('"' == $value[0]) {
-            if ('"' == $value[strlen($value) -1]) {
+            if ('"' == $value[strlen($value) - 1]) {
                 $value = substr($value, 1, -1);
             }
-        } elseif ('\'' == $value[0] && '\'' == $value[strlen($value) -1]) {
+        } elseif ('\'' == $value[0] && '\'' == $value[strlen($value) - 1]) {
             $value = strtr($value, array("''" => "'", "'" => ''));
         }
 

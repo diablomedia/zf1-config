@@ -211,7 +211,7 @@ class Zend_Config_Writer_XmlTest extends PHPUnit\Framework\TestCase
     {
         $config = new Zend_Config(array('test' => 'foo', 'bar' => array(0 => 'baz', 1 => 'foo')));
 
-        $writer = new Zend_Config_Writer_Xml();
+        $writer       = new Zend_Config_Writer_Xml();
         $configString = $writer->setConfig($config)->render();
 
         $expected = <<<ECS

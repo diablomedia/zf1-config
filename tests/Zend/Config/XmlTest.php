@@ -38,16 +38,16 @@ class Zend_Config_XmlTest extends PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-        $this->_xmlFileConfig = dirname(__FILE__) . '/_files/config.xml';
-        $this->_xmlFileAllSectionsConfig = dirname(__FILE__) . '/_files/allsections.xml';
-        $this->_xmlFileCircularConfig = dirname(__FILE__) . '/_files/circular.xml';
-        $this->_xmlFileTopLevelStringConfig = dirname(__FILE__) . '/_files/toplevelstring.xml';
+        $this->_xmlFileConfig                  = dirname(__FILE__) . '/_files/config.xml';
+        $this->_xmlFileAllSectionsConfig       = dirname(__FILE__) . '/_files/allsections.xml';
+        $this->_xmlFileCircularConfig          = dirname(__FILE__) . '/_files/circular.xml';
+        $this->_xmlFileTopLevelStringConfig    = dirname(__FILE__) . '/_files/toplevelstring.xml';
         $this->_xmlFileOneTopLevelStringConfig = dirname(__FILE__) . '/_files/onetoplevelstring.xml';
-        $this->_nonReadableConfig = dirname(__FILE__) . '/_files/nonreadable.xml';
-        $this->_xmlFileSameNameKeysConfig = dirname(__FILE__) . '/_files/array.xml';
-        $this->_xmlFileShortParamsOneConfig = dirname(__FILE__) . '/_files/shortparamsone.xml';
-        $this->_xmlFileShortParamsTwoConfig = dirname(__FILE__) . '/_files/shortparamstwo.xml';
-        $this->_xmlFileInvalid = dirname(__FILE__) . '/_files/invalid.xml';
+        $this->_nonReadableConfig              = dirname(__FILE__) . '/_files/nonreadable.xml';
+        $this->_xmlFileSameNameKeysConfig      = dirname(__FILE__) . '/_files/array.xml';
+        $this->_xmlFileShortParamsOneConfig    = dirname(__FILE__) . '/_files/shortparamsone.xml';
+        $this->_xmlFileShortParamsTwoConfig    = dirname(__FILE__) . '/_files/shortparamstwo.xml';
+        $this->_xmlFileInvalid                 = dirname(__FILE__) . '/_files/invalid.xml';
     }
 
     public function testLoadSingleSection()
@@ -152,7 +152,7 @@ class Zend_Config_XmlTest extends PHPUnit\Framework\TestCase
     public function testErrorNoFile()
     {
         try {
-            $config = new Zend_Config_Xml('',null);
+            $config = new Zend_Config_Xml('', null);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertContains('Filename is not set', $expected->getMessage());
@@ -171,7 +171,6 @@ class Zend_Config_XmlTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('one', $config->one);
         $config = new Zend_Config_Xml($this->_xmlFileOneTopLevelStringConfig, 'one');
         $this->assertEquals('one', $config->one);
-
     }
 
     public function testZF2285_MultipleKeysOfTheSameName()
@@ -319,7 +318,6 @@ EOT;
 
         $config = new Zend_Config_Xml($string, 'staging');
         $this->assertEquals('staging', $config->hostname);
-
     }
 
     /*

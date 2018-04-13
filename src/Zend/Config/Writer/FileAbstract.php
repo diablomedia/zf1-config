@@ -125,6 +125,6 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
      */
     public function render()
     {
-        return "";
+        return '';
     }
 }

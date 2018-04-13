@@ -32,7 +32,7 @@ class Zend_Config_Json extends Zend_Config
     /**
      * Name of object key indicating section current section extends
      */
-    const EXTENDS_NAME = "_extends";
+    const EXTENDS_NAME = '_extends';
 
     /**
      * Whether or not to ignore constants in the JSON string
@@ -120,7 +120,7 @@ class Zend_Config_Json extends Zend_Config
             $config = Zend_Json::decode($json);
         } catch (Zend_Json_Exception $e) {
             // decode failed
-            throw new Zend_Config_Exception("Error parsing JSON data");
+            throw new Zend_Config_Exception('Error parsing JSON data');
         }
 
         if ($section === null) {
@@ -174,7 +174,7 @@ class Zend_Config_Json extends Zend_Config
             throw new Zend_Config_Exception(sprintf('Section "%s" cannot be found', $section));
         }
 
-        $thisSection  = $data[$section];
+        $thisSection = $data[$section];
 
         if (is_array($thisSection) && isset($thisSection[self::EXTENDS_NAME])) {
             if (is_array($thisSection[self::EXTENDS_NAME])) {
@@ -205,7 +205,7 @@ class Zend_Config_Json extends Zend_Config
             if (strstr($value, $constant)) {
                 // handle backslashes that may represent windows path names for instance
                 $replacement = str_replace('\\', '\\\\', constant($constant));
-                $value = str_replace($constant, $replacement, $value);
+                $value       = str_replace($constant, $replacement, $value);
             }
         }
         return $value;

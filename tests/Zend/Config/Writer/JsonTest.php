@@ -157,7 +157,7 @@ class Zend_Config_Writer_JsonTest extends PHPUnit\Framework\TestCase
         $writer = new Zend_Config_Writer_Json(array('config' => $config, 'filename' => $this->_tempName));
         $writer->setPrettyPrint(true);
         $writer->write();
-        $testOutput     = file_get_contents($this->_tempName);
+        $testOutput = file_get_contents($this->_tempName);
         $this->assertRegExp('/^\s+/m', $testOutput);
     }
 }

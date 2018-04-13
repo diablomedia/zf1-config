@@ -1,4 +1,7 @@
 parameters:
+    excludes_analyse:
+        - %rootDir%/../../../tests/*
+        - %rootDir%/../../../vendor/*
     ignoreErrors:
         - '#Casting to .+ something that.s already .+\.#'
         - '#Argument of an invalid type DOMDocument\|false\|SimpleXMLElement supplied for foreach, only iterables are supported\.#'

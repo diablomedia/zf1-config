@@ -24,6 +24,7 @@ install:
 
 stages:
   - test
+  - style check
   - static analysis
   - test with coverage
 
@@ -38,6 +39,11 @@ jobs:
   allow_failures:
     - php: nightly
   include:
+    - stage: style check
+      php: 7.1
+      env: TMPDIR=/tmp USE_XDEBUG=false
+      script:
+        - composer style-check
     - stage: static analysis
       php: 7.1
       env: TMPDIR=/tmp USE_XDEBUG=false

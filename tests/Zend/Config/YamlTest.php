@@ -33,20 +33,20 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
-        $this->_iniFileConfig             = dirname(__FILE__) . '/_files/config.yaml';
-        $this->_iniFileAllSectionsConfig  = dirname(__FILE__) . '/_files/allsections.yaml';
-        $this->_iniFileCircularConfig     = dirname(__FILE__) . '/_files/circular.yaml';
-        $this->_nonReadableConfig         = dirname(__FILE__) . '/_files/nonreadable.yaml';
-        $this->_iniFileInvalid            = dirname(__FILE__) . '/_files/invalid.yaml';
-        $this->_iniFileSameNameKeysConfig = dirname(__FILE__) . '/_files/array.yaml';
-        $this->_badIndentationConfig      = dirname(__FILE__) . '/_files/badindentation.yaml';
-        $this->_booleansConfig            = dirname(__FILE__) . '/_files/booleans.yaml';
-        $this->_constantsConfig           = dirname(__FILE__) . '/_files/constants.yaml';
-        $this->_yamlInlineCommentsConfig  = dirname(__FILE__) . '/_files/inlinecomments.yaml';
-        $this->_yamlIndentedCommentsConfig  = dirname(__FILE__) . '/_files/indentedcomments.yaml';
-        $this->_yamlListConstantsConfig     = dirname(__FILE__) . '/_files/listconstants.yaml';
-        $this->_listBooleansConfig          = dirname(__FILE__) . '/_files/listbooleans.yaml';
-        $this->_yamlSingleQuotedString    = dirname(__FILE__) . '/_files/zf11934.yaml';
+        $this->_iniFileConfig              = dirname(__FILE__) . '/_files/config.yaml';
+        $this->_iniFileAllSectionsConfig   = dirname(__FILE__) . '/_files/allsections.yaml';
+        $this->_iniFileCircularConfig      = dirname(__FILE__) . '/_files/circular.yaml';
+        $this->_nonReadableConfig          = dirname(__FILE__) . '/_files/nonreadable.yaml';
+        $this->_iniFileInvalid             = dirname(__FILE__) . '/_files/invalid.yaml';
+        $this->_iniFileSameNameKeysConfig  = dirname(__FILE__) . '/_files/array.yaml';
+        $this->_badIndentationConfig       = dirname(__FILE__) . '/_files/badindentation.yaml';
+        $this->_booleansConfig             = dirname(__FILE__) . '/_files/booleans.yaml';
+        $this->_constantsConfig            = dirname(__FILE__) . '/_files/constants.yaml';
+        $this->_yamlInlineCommentsConfig   = dirname(__FILE__) . '/_files/inlinecomments.yaml';
+        $this->_yamlIndentedCommentsConfig = dirname(__FILE__) . '/_files/indentedcomments.yaml';
+        $this->_yamlListConstantsConfig    = dirname(__FILE__) . '/_files/listconstants.yaml';
+        $this->_listBooleansConfig         = dirname(__FILE__) . '/_files/listbooleans.yaml';
+        $this->_yamlSingleQuotedString     = dirname(__FILE__) . '/_files/zf11934.yaml';
     }
 
     public function testLoadSingleSection()
@@ -123,7 +123,6 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
 
         $this->assertEquals('otherStaging', $config->only_in);
         $this->assertEquals('staging', $config->hostname);
-
     }
 
     public function testZF413_AllSections()
@@ -161,7 +160,7 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
     public function testErrorNoFile()
     {
         try {
-            $config = new Zend_Config_Yaml('','');
+            $config = new Zend_Config_Yaml('', '');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertContains('Filename is not set', $expected->getMessage());
@@ -171,19 +170,18 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
     public function testErrorNoSectionFound()
     {
         try {
-            $config = new Zend_Config_Yaml($this->_iniFileConfig,array('all', 'notthere'));
+            $config = new Zend_Config_Yaml($this->_iniFileConfig, array('all', 'notthere'));
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertContains('cannot be found', $expected->getMessage());
         }
 
         try {
-            $config = new Zend_Config_Yaml($this->_iniFileConfig,'notthere');
+            $config = new Zend_Config_Yaml($this->_iniFileConfig, 'notthere');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertContains('cannot be found', $expected->getMessage());
         }
-
     }
 
     public function testZF3196_InvalidIniFile()
@@ -194,7 +192,6 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
         } catch (Zend_Config_Exception $expected) {
             $this->assertRegExp('/(Error parsing|syntax error, unexpected)/', $expected->getMessage());
         }
-
     }
 
     public function testZF2285_MultipleKeysOfTheSameName()
@@ -325,7 +322,9 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
             define('ZEND_CONFIG_YAML_ENV_PATH', dirname(__FILE__));
         }
         $config = new Zend_Config_Yaml(
-            $this->_constantsConfig, 'production', array('ignore_constants' => true)
+            $this->_constantsConfig,
+            'production',
+            array('ignore_constants' => true)
         );
         $this->assertEquals('ZEND_CONFIG_YAML_ENV', $config->env);
         $this->assertEquals('ZEND_CONFIG_YAML_ENV_PATH/test/this', $config->path);
@@ -340,7 +339,8 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($config->resources instanceof Zend_Config);
         $this->assertTrue($config->resources->frontController instanceof Zend_Config);
         $this->assertInternalType(
-            'string', $config->resources->frontController->controllerDirectory
+            'string',
+            $config->resources->frontController->controllerDirectory
         );
         $this->assertSame(
             'APPLICATION_PATH/controllers',
@@ -357,7 +357,8 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($config->resources instanceof Zend_Config);
         $this->assertTrue($config->resources->frontController instanceof Zend_Config);
         $this->assertInternalType(
-            'string', $config->resources->frontController->controllerDirectory
+            'string',
+            $config->resources->frontController->controllerDirectory
         );
         $this->assertSame(
             'APPLICATION_PATH/controllers',

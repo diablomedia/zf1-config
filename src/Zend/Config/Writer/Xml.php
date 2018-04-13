@@ -69,7 +69,7 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
             throw new Zend_Config_Exception('Error importing XML');
         }
 
-        $dom = $dom->ownerDocument;
+        $dom               = $dom->ownerDocument;
         $dom->formatOutput = true;
 
         $xmlString = $dom->saveXML();
@@ -101,7 +101,7 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
                 } else {
                     $branchType = 'string';
                 }
-            } else if ($branchType !== (is_numeric($key) ? 'numeric' : 'string')) {
+            } elseif ($branchType !== (is_numeric($key) ? 'numeric' : 'string')) {
                 throw new Zend_Config_Exception('Mixing of string and numeric keys is not allowed');
             }
 
