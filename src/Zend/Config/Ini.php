@@ -150,14 +150,14 @@ class Zend_Config_Ini extends Zend_Config
      *
      * @param string $filename
      * @throws Zend_Config_Exception
-     * @return array
+     * @return array|false
      */
     protected function _parseIniFile($filename)
     {
         set_error_handler(array($this, '_loadFileErrorHandler'));
         $iniArray = parse_ini_file($filename, true); // Warnings and errors are suppressed
         restore_error_handler();
-
+        
         // Check if there was a error while loading file
         if ($this->_loadFileErrorStr !== null) {
             throw new Zend_Config_Exception($this->_loadFileErrorStr);
@@ -184,14 +184,14 @@ class Zend_Config_Ini extends Zend_Config
         $iniArray = array();
         foreach ($loaded as $key => $data) {
             $pieces      = explode($this->_sectionSeparator, $key);
-            $thisSection = trim($pieces[0]);
+            $thisSection = trim((string) $pieces[0]);
             switch (count($pieces)) {
                 case 1:
                     $iniArray[$thisSection] = $data;
                     break;
 
                 case 2:
-                    $extendedSection        = trim($pieces[1]);
+                    $extendedSection        = trim((string) $pieces[1]);
                     $iniArray[$thisSection] = array_merge(array(';extends' => $extendedSection), $data);
                     break;
 
@@ -250,7 +250,7 @@ class Zend_Config_Ini extends Zend_Config
     {
         if (strpos($key, $this->_nestSeparator) !== false) {
             $pieces = explode($this->_nestSeparator, $key, 2);
-            if (strlen($pieces[0]) && strlen($pieces[1])) {
+            if (strlen((string) $pieces[0]) && strlen((string) $pieces[1])) {
                 if (!isset($config[$pieces[0]])) {
                     if ($pieces[0] === '0' && !empty($config)) {
                         // convert the current values in $config into an array
@@ -261,7 +261,7 @@ class Zend_Config_Ini extends Zend_Config
                 } elseif (!is_array($config[$pieces[0]])) {
                     throw new Zend_Config_Exception("Cannot create sub-key for '{$pieces[0]}' as key already exists");
                 }
-                $config[$pieces[0]] = $this->_processKey($config[$pieces[0]], $pieces[1], $value);
+                $config[$pieces[0]] = $this->_processKey($config[$pieces[0]], (string) $pieces[1], $value);
             } else {
                 throw new Zend_Config_Exception("Invalid key '$key'");
             }

@@ -153,7 +153,7 @@ class Zend_ConfigTest extends PHPUnit\Framework\TestCase
     public function testCount()
     {
         $data = new Zend_Config($this->_menuData1);
-        $this->assertEquals(3, count($data->button));
+        $this->assertCount(3, $data->button);
     }
 
     public function testIterator()

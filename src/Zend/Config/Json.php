@@ -65,7 +65,7 @@ class Zend_Config_Json extends Zend_Config
      *
      * @param  string  $json     JSON file or string to process
      * @param  mixed   $section Section to process
-     * @param  boolean $options Whether modifiacations are allowed at runtime
+     * @param  boolean|array $options Whether modifiacations are allowed at runtime
      * @throws Zend_Config_Exception When JSON text is not set or cannot be loaded
      * @throws Zend_Config_Exception When section $sectionName cannot be found in $json
      */
@@ -112,12 +112,12 @@ class Zend_Config_Json extends Zend_Config
 
         // Replace constants
         if (!$this->_ignoreConstants) {
-            $json = $this->_replaceConstants($json);
+            $json = $this->_replaceConstants((string) $json);
         }
 
         // Parse/decode
         try {
-            $config = Zend_Json::decode($json);
+            $config = Zend_Json::decode((string) $json);
         } catch (Zend_Json_Exception $e) {
             // decode failed
             throw new Zend_Config_Exception('Error parsing JSON data');

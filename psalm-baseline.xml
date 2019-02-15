@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files>
+  <file src="src/Zend/Config.php">
+    <PropertyNotSetInConstructor occurrences="9">
+      <code>$_skipNextIteration</code>
+      <code>$_skipNextIteration</code>
+      <code>$_skipNextIteration</code>
+      <code>$_allowModifications</code>
+      <code>$_index</code>
+      <code>$_count</code>
+      <code>$_data</code>
+      <code>$_skipNextIteration</code>
+      <code>$_skipNextIteration</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Zend/Config/Ini.php">
+    <PossiblyFalseIterator occurrences="1">
+      <code>$loaded</code>
+    </PossiblyFalseIterator>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_array($options)</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/Zend/Config/Json.php">
+    <RedundantConditionGivenDocblockType occurrences="2">
+      <code>is_array($options)</code>
+      <code>!is_array($dataArray)</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/Zend/Config/Xml.php">
+    <InvalidArgument occurrences="1">
+      <code>$xmlObject-&gt;attributes()</code>
+    </InvalidArgument>
+    <PossiblyFalseIterator occurrences="1">
+      <code>$config</code>
+    </PossiblyFalseIterator>
+    <PossiblyNullIterator occurrences="1">
+      <code>$xmlObject-&gt;attributes()</code>
+    </PossiblyNullIterator>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_array($options)</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/Zend/Config/Yaml.php">
+    <RedundantConditionGivenDocblockType occurrences="3">
+      <code>is_array($options)</code>
+      <code>!is_array($dataArray)</code>
+      <code>is_array($value) &amp;&amp; !count($value)</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+</files>

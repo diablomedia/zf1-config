@@ -282,7 +282,7 @@ class Zend_Config_Yaml extends Zend_Config
             $lineno = (int) key($lines) + 1;
             next($lines);
 
-            $line = rtrim(preg_replace('/#.*$/', '', $line));
+            $line = rtrim((string) preg_replace('/#.*$/', '', $line));
             if (strlen($line) == 0) {
                 continue;
             }
@@ -310,8 +310,9 @@ class Zend_Config_Yaml extends Zend_Config
                 // key: value
                 if (strlen($m[2])) {
                     // simple key: value
+                    /** @var string|null $value Subject isn't an array, won't return array */
                     $value = preg_replace('/#.*$/', '', $m[2]);
-                    $value = self::_parseValue($value);
+                    $value = self::_parseValue((string) $value);
                 } else {
                     // key: and then values on new lines
                     $value = self::_decodeYaml($currentIndent + 1, $lines);

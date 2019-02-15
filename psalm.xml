@@ -3,28 +3,13 @@
     totallyTyped="false"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="./vendor/vimeo/psalm/src/config.xsd"
+    errorBaseline="psalm-baseline.xml"
 >
     <projectFiles>
         <directory name="src" />
     </projectFiles>
 
     <issueHandlers>
-        <PropertyNotSetInConstructor errorLevel="info" />
-        <RedundantConditionGivenDocblockType errorLevel="info" />
-        <RawObjectIteration errorLevel="info" />
-        <RedundantCondition errorLevel="info" />
-        <PossiblyFalseIterator errorLevel="info" />
-
-        <InvalidArgument>
-            <errorLevel type="info">
-                <!-- SimpleXMLElement can be used in count, as it provides iterator. Could change to iterator_to_array to suppress, but maybe slower -->
-                <file name="src/Zend/Config/Xml.php" />
-            </errorLevel>
-        </InvalidArgument>
-        <DocblockTypeContradiction>
-            <errorLevel type="info">
-                <file name="src/Zend/Config/Json.php" />
-            </errorLevel>
-        </DocblockTypeContradiction>
+        
     </issueHandlers>
 </psalm>
