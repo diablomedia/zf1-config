@@ -14,8 +14,6 @@ parameters:
             metadata:
                 priority: 100
             always_execute: true
-        phan:
-            config_file: .phan/config.php
         psalm:
             config: psalm.xml
             show_info: false

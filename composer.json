@@ -31,7 +31,6 @@
     "require-dev": {
         "phpunit/phpunit": "^7.0",
         "phpstan/phpstan": "^0.11.2",
-        "phan/phan": "^0.12.5",
         "vimeo/psalm": "^3.0",
         "friendsofphp/php-cs-fixer": "^2.11",
         "maglnet/composer-require-checker": "^1.1.0",
@@ -45,7 +44,6 @@
         "test": "phpunit",
         "test-with-coverage": "phpunit --coverage-clover=clover.xml",
         "phpstan": "phpstan analyze -c phpstan.neon --no-progress --ansi",
-        "phan": "phan",
         "psalm": "psalm --show-info=false",
         "style-check": "php-cs-fixer fix --dry-run -vv"
     },
