@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files>
   <file src="src/Zend/Config.php">
-    <PropertyNotSetInConstructor occurrences="9">
-      <code>$_skipNextIteration</code>
-      <code>$_skipNextIteration</code>
+    <PropertyNotSetInConstructor occurrences="5">
       <code>$_skipNextIteration</code>
       <code>$_allowModifications</code>
       <code>$_index</code>
       <code>$_count</code>
       <code>$_data</code>
-      <code>$_skipNextIteration</code>
-      <code>$_skipNextIteration</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Zend/Config/Ini.php">
+    <InvalidArgument occurrences="1">
+      <code>array($this, '_loadFileErrorHandler')</code>
+    </InvalidArgument>
     <PossiblyFalseIterator occurrences="1">
       <code>$loaded</code>
     </PossiblyFalseIterator>
@@ -22,13 +21,19 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Zend/Config/Json.php">
-    <RedundantConditionGivenDocblockType occurrences="2">
+    <DocblockTypeContradiction occurrences="1">
+      <code>is_array($dataArray)</code>
+    </DocblockTypeContradiction>
+    <InvalidArgument occurrences="1">
+      <code>array($this, '_loadFileErrorHandler')</code>
+    </InvalidArgument>
+    <RedundantConditionGivenDocblockType occurrences="1">
       <code>is_array($options)</code>
-      <code>!is_array($dataArray)</code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Zend/Config/Xml.php">
-    <InvalidArgument occurrences="1">
+    <InvalidArgument occurrences="2">
+      <code>array($this, '_loadFileErrorHandler')</code>
       <code>$xmlObject-&gt;attributes()</code>
     </InvalidArgument>
     <PossiblyFalseIterator occurrences="1">
@@ -42,10 +47,16 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Zend/Config/Yaml.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>is_array($dataArray)</code>
+    </DocblockTypeContradiction>
+    <InvalidArgument occurrences="1">
+      <code>array($this, '_loadFileErrorHandler')</code>
+    </InvalidArgument>
     <RedundantConditionGivenDocblockType occurrences="3">
       <code>is_array($options)</code>
-      <code>!is_array($dataArray)</code>
-      <code>is_array($value) &amp;&amp; !count($value)</code>
+      <code>is_array($dataArray)</code>
+      <code>is_array($value)</code>
     </RedundantConditionGivenDocblockType>
   </file>
 </files>
