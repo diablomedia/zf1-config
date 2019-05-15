@@ -33,28 +33,28 @@ class Zend_Config implements Countable, Iterator
      *
      * @var boolean
      */
-    protected $_allowModifications;
+    protected $_allowModifications = false;
 
     /**
      * Iteration index
      *
      * @var integer
      */
-    protected $_index;
+    protected $_index = 0;
 
     /**
      * Number of elements in configuration data
      *
      * @var integer
      */
-    protected $_count;
+    protected $_count = 0;
 
     /**
      * Contains array of configuration data
      *
      * @var array
      */
-    protected $_data;
+    protected $_data = array();
 
     /**
      * Used when unsetting values during iteration to ensure we do not skip
@@ -62,7 +62,7 @@ class Zend_Config implements Countable, Iterator
      *
      * @var boolean
      */
-    protected $_skipNextIteration;
+    protected $_skipNextIteration = false;
 
     /**
      * Contains which config file sections were loaded. This is null
