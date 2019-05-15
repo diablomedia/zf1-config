@@ -2,9 +2,17 @@ language: php
 
 sudo: false
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - vendor
+
 env:
   global:
-    - COMPOSER_ARGS="" TMPDIR=/tmp USE_XDEBUG=false
+    - COMPOSER_ARGS=""
+    - TMPDIR=/tmp
+    - USE_XDEBUG=false
+    - COMPOSER_DISCARD_CHANGES=1
 
 branches:
   only:
@@ -49,20 +57,20 @@ jobs:
       env: COMPOSER_ARGS="--ignore-platform-reqs --prefer-lowest"
     - php: nightly
       env: COMPOSER_ARGS="--ignore-platform-reqs"
-      
+
     - stage: style check
       php: 7.2
       env: TMPDIR=/tmp USE_XDEBUG=false
       script:
         - composer style-check
-        
+
     - stage: static analysis
       php: 7.2
       env: TMPDIR=/tmp USE_XDEBUG=false
       script:
         - composer phpstan
         - composer psalm
-        
+
     - stage: test with coverage
       php: 7.2
       env: TMPDIR=/tmp USE_XDEBUG=true CC_TEST_REPORTER_ID=ec76409b1e3d0a9f7e693fdcc5da91447eb34e2a207733f7ec0b1cdf549a726a
