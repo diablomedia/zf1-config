@@ -190,10 +190,11 @@ class Zend_Config_Xml extends Zend_Config
     {
         $config       = array();
         $nsAttributes = $xmlObject->attributes(self::XML_NAMESPACE);
+        $attributes   = $xmlObject->attributes();
 
         // Search for parent node values
-        if ($xmlObject->attributes() !== null && count($xmlObject->attributes()) > 0) {
-            foreach ($xmlObject->attributes() as $key => $value) {
+        if ($attributes !== null && count($attributes) > 0) {
+            foreach ($attributes as $key => $value) {
                 if ($key === 'extends') {
                     continue;
                 }
