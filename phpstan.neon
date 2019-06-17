@@ -22,10 +22,7 @@ parameters:
         -
             message: '#Parameter \#1 \$var of function count expects array\|Countable, SimpleXMLElement given\.#'
             path: %currentWorkingDirectory%/src/Zend/Config/Xml.php
-        -
-            message: '#Result of && is always false\.#'
-            path: %currentWorkingDirectory%/src/Zend/Config/Xml.php
         # Tried to fix this one by only returning an array in the _parseIniFile method, but then a test fails
-        - 
+        -
             message: '#Argument of an invalid type array\|false supplied for foreach, only iterables are supported\.#'
             path: %currentWorkingDirectory%/src/Zend/Config/Ini.php
