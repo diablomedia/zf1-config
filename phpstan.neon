@@ -24,14 +24,14 @@ parameters:
             path: %currentWorkingDirectory%/src/Zend/Config/Ini.php
         # Callable can be an array
         -
-            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\)\|null, array<int, \$this\(Zend_Config_Ini\)\|string> given\.#'
+            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(\$this\(Zend_Config_Ini\), ._loadFileErrorHandl….\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Config/Ini.php
         -
-            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\)\|null, array<int, \$this\(Zend_Config_Json\)\|string> given\.#'
+            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(\$this\(Zend_Config_Json\), ._loadFileErrorHandl….\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Config/Json.php
         -
-            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\)\|null, array<int, \$this\(Zend_Config_Xml\)\|string> given\.#'
+            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(\$this\(Zend_Config_Xml\), ._loadFileErrorHandl….\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Config/Xml.php
         -
-            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\)\|null, array<int, \$this\(Zend_Config_Yaml\)\|string> given\.#'
+            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(\$this\(Zend_Config_Yaml\), ._loadFileErrorHandl….\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Config/Yaml.php
