@@ -264,10 +264,10 @@ class Zend_Config_Xml extends Zend_Config
         // Search for children
         if (count($xmlObject->children()) > 0) {
             foreach ($xmlObject->children() as $key => $value) {
+                $attributes = $value->attributes();
                 if (count($value->children()) > 0 || count($value->children(self::XML_NAMESPACE)) > 0) {
                     $value = $this->_toArray($value);
-                } elseif (count($value->attributes()) > 0) {
-                    $attributes = $value->attributes();
+                } elseif ($attributes !== null && count($attributes) > 0) {
                     if (isset($attributes['value'])) {
                         $value = (string) $attributes['value'];
                     } else {
