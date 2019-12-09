@@ -157,7 +157,7 @@ class Zend_Config_Ini extends Zend_Config
         set_error_handler(array($this, '_loadFileErrorHandler'));
         $iniArray = parse_ini_file($filename, true); // Warnings and errors are suppressed
         restore_error_handler();
-        
+
         // Check if there was a error while loading file
         if ($this->_loadFileErrorStr !== null) {
             throw new Zend_Config_Exception($this->_loadFileErrorStr);
@@ -184,19 +184,21 @@ class Zend_Config_Ini extends Zend_Config
         $iniArray = array();
         foreach ($loaded as $key => $data) {
             $pieces      = explode($this->_sectionSeparator, $key);
-            $thisSection = trim((string) $pieces[0]);
-            switch (count($pieces)) {
-                case 1:
-                    $iniArray[$thisSection] = $data;
-                    break;
+            if ($pieces !== false) {
+                $thisSection = trim((string) $pieces[0]);
+                switch (count($pieces)) {
+                    case 1:
+                        $iniArray[$thisSection] = $data;
+                        break;
 
-                case 2:
-                    $extendedSection        = trim((string) $pieces[1]);
-                    $iniArray[$thisSection] = array_merge(array(';extends' => $extendedSection), $data);
-                    break;
+                    case 2:
+                        $extendedSection        = trim((string) $pieces[1]);
+                        $iniArray[$thisSection] = array_merge(array(';extends' => $extendedSection), $data);
+                        break;
 
-                default:
-                    throw new Zend_Config_Exception("Section '$thisSection' may not extend multiple sections in $filename");
+                    default:
+                        throw new Zend_Config_Exception("Section '$thisSection' may not extend multiple sections in $filename");
+                }
             }
         }
 
@@ -250,7 +252,7 @@ class Zend_Config_Ini extends Zend_Config
     {
         if (strpos($key, $this->_nestSeparator) !== false) {
             $pieces = explode($this->_nestSeparator, $key, 2);
-            if (strlen((string) $pieces[0]) && strlen((string) $pieces[1])) {
+            if ($pieces !== false && strlen((string) $pieces[0]) && strlen((string) $pieces[1])) {
                 if (!isset($config[$pieces[0]])) {
                     if ($pieces[0] === '0' && !empty($config)) {
                         // convert the current values in $config into an array
