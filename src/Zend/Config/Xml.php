@@ -193,7 +193,7 @@ class Zend_Config_Xml extends Zend_Config
         $attributes   = $xmlObject->attributes();
 
         // Search for parent node values
-        if ($attributes !== null && count($attributes) > 0) {
+        if ($attributes !== null && $attributes->count() > 0) {
             foreach ($attributes as $key => $value) {
                 if ($key === 'extends') {
                     continue;
@@ -214,8 +214,8 @@ class Zend_Config_Xml extends Zend_Config
         }
 
         // Search for local 'const' nodes and replace them
-        if (count($xmlObject->children(self::XML_NAMESPACE)) > 0) {
-            if (count($xmlObject->children()) > 0) {
+        if ($xmlObject->children(self::XML_NAMESPACE)->count() > 0) {
+            if ($xmlObject->children()->count() > 0) {
                 throw new Zend_Config_Exception("A node with a 'const' childnode may not have any other children");
             }
 
@@ -262,7 +262,7 @@ class Zend_Config_Xml extends Zend_Config
         }
 
         // Search for children
-        if (count($xmlObject->children()) > 0) {
+        if ($xmlObject->children()->count() > 0) {
             foreach ($xmlObject->children() as $key => $value) {
                 $attributes = $value->attributes();
                 if (count($value->children()) > 0 || count($value->children(self::XML_NAMESPACE)) > 0) {
