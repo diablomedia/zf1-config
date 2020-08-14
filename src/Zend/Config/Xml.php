@@ -250,6 +250,10 @@ class Zend_Config_Xml extends Zend_Config
 
                         $constantValue = constant($constantName);
 
+                        if ($dom->ownerDocument === null) {
+                            throw new Zend_Config_Exception('Document has no ownerDocument');
+                        }
+
                         $dom->replaceChild($dom->ownerDocument->createTextNode($constantValue), $node);
                         break;
 
