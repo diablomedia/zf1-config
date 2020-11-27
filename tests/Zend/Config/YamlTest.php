@@ -31,7 +31,7 @@
  */
 class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->_iniFileConfig              = dirname(__FILE__) . '/_files/config.yaml';
         $this->_iniFileAllSectionsConfig   = dirname(__FILE__) . '/_files/allsections.yaml';
@@ -74,9 +74,9 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
     {
         $config = new Zend_Config_Yaml($this->_iniFileConfig, 'debug');
 
-        $this->assertInternalType('string', $config->debug);
+        $this->assertIsString($config->debug);
         $this->assertEquals('1', $config->debug);
-        $this->assertInternalType('string', $config->values->changed);
+        $this->assertIsString($config->values->changed);
         $this->assertEquals('1', $config->values->changed);
     }
 
@@ -84,13 +84,13 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
     {
         $config = new Zend_Config_Yaml($this->_iniFileConfig, 'debug');
 
-        $this->assertInternalType('string', $config->special->no);
+        $this->assertIsString($config->special->no);
         $this->assertEquals('', $config->special->no);
-        $this->assertInternalType('string', $config->special->null);
+        $this->assertIsString($config->special->null);
         $this->assertEquals('', $config->special->null);
-        $this->assertInternalType('string', $config->special->false);
+        $this->assertIsString($config->special->false);
         $this->assertEquals('', $config->special->false);
-        $this->assertInternalType('string', $config->special->zero);
+        $this->assertIsString($config->special->zero);
         $this->assertEquals('0', $config->special->zero);
     }
 
@@ -113,7 +113,7 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
             $config = new Zend_Config_Yaml($this->_iniFileConfig, 'extendserror');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
     }
 
@@ -153,7 +153,7 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
             $config = new Zend_Config_Yaml($this->_iniFileCircularConfig, null);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('circular inheritance', $expected->getMessage());
+            $this->assertStringContainsString('circular inheritance', $expected->getMessage());
         }
     }
 
@@ -163,7 +163,7 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
             $config = new Zend_Config_Yaml('', '');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('Filename is not set', $expected->getMessage());
+            $this->assertStringContainsString('Filename is not set', $expected->getMessage());
         }
     }
 
@@ -173,14 +173,14 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
             $config = new Zend_Config_Yaml($this->_iniFileConfig, array('all', 'notthere'));
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
 
         try {
             $config = new Zend_Config_Yaml($this->_iniFileConfig, 'notthere');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
     }
 
@@ -338,8 +338,7 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
         $config = new Zend_Config_Yaml($this->_yamlInlineCommentsConfig, null);
         $this->assertTrue($config->resources instanceof Zend_Config);
         $this->assertTrue($config->resources->frontController instanceof Zend_Config);
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $config->resources->frontController->controllerDirectory
         );
         $this->assertSame(
@@ -356,8 +355,7 @@ class Zend_Config_YamlTest extends PHPUnit\Framework\TestCase
         $config = new Zend_Config_Yaml($this->_yamlIndentedCommentsConfig, null);
         $this->assertTrue($config->resources instanceof Zend_Config);
         $this->assertTrue($config->resources->frontController instanceof Zend_Config);
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $config->resources->frontController->controllerDirectory
         );
         $this->assertSame(

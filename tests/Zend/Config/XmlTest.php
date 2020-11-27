@@ -36,7 +36,7 @@ class Zend_Config_XmlTest extends PHPUnit\Framework\TestCase
     protected $_xmlFileCircularConfig;
     protected $_xmlFileInvalid;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_xmlFileConfig                  = dirname(__FILE__) . '/_files/config.xml';
         $this->_xmlFileAllSectionsConfig       = dirname(__FILE__) . '/_files/allsections.xml';
@@ -88,14 +88,14 @@ class Zend_Config_XmlTest extends PHPUnit\Framework\TestCase
             $config = @new Zend_Config_Xml($this->_xmlFileConfig, 'notthere');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found in', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found in', $expected->getMessage());
         }
 
         try {
             $config = @new Zend_Config_Xml($this->_xmlFileConfig, array('notthere', 'all'));
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found in', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found in', $expected->getMessage());
         }
     }
 
@@ -105,7 +105,7 @@ class Zend_Config_XmlTest extends PHPUnit\Framework\TestCase
             $config = new Zend_Config_Xml($this->_xmlFileConfig, 'extendserror');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
     }
 
@@ -145,7 +145,7 @@ class Zend_Config_XmlTest extends PHPUnit\Framework\TestCase
             $config = new Zend_Config_Xml($this->_xmlFileCircularConfig, null);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('circular inheritance', $expected->getMessage());
+            $this->assertStringContainsString('circular inheritance', $expected->getMessage());
         }
     }
 
@@ -155,7 +155,7 @@ class Zend_Config_XmlTest extends PHPUnit\Framework\TestCase
             $config = new Zend_Config_Xml('', null);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('Filename is not set', $expected->getMessage());
+            $this->assertStringContainsString('Filename is not set', $expected->getMessage());
         }
     }
 
@@ -199,13 +199,13 @@ class Zend_Config_XmlTest extends PHPUnit\Framework\TestCase
             $config = new Zend_Config_Xml($this->_xmlFileInvalid);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('failed to load', $expected->getMessage());
+            $this->assertStringContainsString('failed to load', $expected->getMessage());
         }
         try {
             $config = new Zend_Config_Xml('I/dont/exist');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('doesn\'t exist', $expected->getMessage());
+            $this->assertStringContainsString('doesn\'t exist', $expected->getMessage());
         }
     }
 

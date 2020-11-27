@@ -7,9 +7,14 @@
 >
     <projectFiles>
         <directory name="src" />
+        <!-- This shouldn't be necessary but Psalm errors without it -->
+        <ignoreFiles>
+            <directory name="tests" />
+            <directory name="vendor" />
+        </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
-        
+
     </issueHandlers>
 </psalm>
