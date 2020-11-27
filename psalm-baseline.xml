@@ -23,6 +23,10 @@
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>is_array($options)</code>
     </RedundantConditionGivenDocblockType>
+    <TypeDoesNotContainType occurrences="2">
+      <code>$key === false</code>
+      <code>$key === false</code>
+    </TypeDoesNotContainType>
   </file>
   <file src="src/Zend/Config/Yaml.php">
     <DocblockTypeContradiction occurrences="1">

@@ -195,7 +195,7 @@ class Zend_Config_Xml extends Zend_Config
         // Search for parent node values
         if ($attributes !== null && $attributes->count() > 0) {
             foreach ($attributes as $key => $value) {
-                if ($key === 'extends') {
+                if ($key === 'extends' || $key === false) {
                     continue;
                 }
 
@@ -251,7 +251,10 @@ class Zend_Config_Xml extends Zend_Config
                         $constantValue = constant($constantName);
 
                         if ($dom->ownerDocument) {
-                            $dom->replaceChild($dom->ownerDocument->createTextNode($constantValue), $node);
+                            $textNode = $dom->ownerDocument->createTextNode($constantValue);
+                            if ($textNode !== false) {
+                                $dom->replaceChild($textNode, $node);
+                            }
                         }
 
                         break;
@@ -278,6 +281,10 @@ class Zend_Config_Xml extends Zend_Config
                     }
                 } else {
                     $value = (string) $value;
+                }
+
+                if ($key === false) {
+                    continue;
                 }
 
                 if (array_key_exists($key, $config)) {
