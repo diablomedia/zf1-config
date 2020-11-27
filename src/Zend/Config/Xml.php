@@ -250,7 +250,10 @@ class Zend_Config_Xml extends Zend_Config
 
                         $constantValue = constant($constantName);
 
-                        $dom->replaceChild($dom->ownerDocument->createTextNode($constantValue), $node);
+                        if ($dom->ownerDocument) {
+                            $dom->replaceChild($dom->ownerDocument->createTextNode($constantValue), $node);
+                        }
+
                         break;
 
                     default:

@@ -70,9 +70,13 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
         }
 
         $dom               = $dom->ownerDocument;
-        $dom->formatOutput = true;
+        if ($dom) {
+            $dom->formatOutput = true;
 
-        $xmlString = $dom->saveXML();
+            $xmlString = $dom->saveXML();
+        } else {
+            $xmlString = false;
+        }
 
         if ($xmlString === false) {
             throw new Zend_Config_Exception('Error saving to XML string');
