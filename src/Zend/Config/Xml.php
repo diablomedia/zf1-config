@@ -221,7 +221,7 @@ class Zend_Config_Xml extends Zend_Config
 
             $dom = dom_import_simplexml($xmlObject);
 
-            if ($dom === false) {
+            if (!$dom) {
                 throw new Zend_Config_Exception('Error importing XML');
             }
 
