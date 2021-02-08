@@ -34,7 +34,7 @@
         "friendsofphp/php-cs-fixer": "2.18.2",
         "maglnet/composer-require-checker": "^1.1.0 || ^2.0.0",
         "phpro/grumphp-shim": "^0.22.0 || ^1.1",
-        "diablomedia/zendframework1-xml": "^1.0.0"
+        "diablomedia/zendframework1-xml": "dev-libxml-deprecation-fix as 1.0.4"
     },
     "archive": {
         "exclude": [
