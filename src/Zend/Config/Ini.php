@@ -32,6 +32,7 @@ class Zend_Config_Ini extends Zend_Config
      * String that separates nesting levels of configuration data identifiers
      *
      * @var string
+     * @phpstan-var non-empty-string
      */
     protected $_nestSeparator = '.';
 
@@ -39,6 +40,7 @@ class Zend_Config_Ini extends Zend_Config
      * String that separates the parent section name
      *
      * @var string
+     * @phpstan-var non-empty-string
      */
     protected $_sectionSeparator = ':';
 
@@ -89,6 +91,7 @@ class Zend_Config_Ini extends Zend_Config
      * @param  string        $filename
      * @param  mixed         $section
      * @param  boolean|array $options
+     * @phpstan-param false|array{allowModifications?: boolean, nestSeparator?: non-empty-string, skipExtends?: boolean} $options
      * @throws Zend_Config_Exception
      * @return void
      */
