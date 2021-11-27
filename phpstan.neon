@@ -31,3 +31,5 @@ parameters:
         -
             message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\{\$this\(Zend_Config_Yaml\), ._loadFileErrorHandl….\} given\.#'
             path: src/Zend/Config/Yaml.php
+includes:
+    - phpstan-php8.php
