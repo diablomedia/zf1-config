@@ -195,7 +195,7 @@ class Zend_Config_Xml extends Zend_Config
         // Search for parent node values
         if ($attributes !== null && $attributes->count() > 0) {
             foreach ($attributes as $key => $value) {
-                if ($key === 'extends' || $key === false) {
+                if ($key === 'extends') {
                     continue;
                 }
 
@@ -281,10 +281,6 @@ class Zend_Config_Xml extends Zend_Config
                     }
                 } else {
                     $value = (string) $value;
-                }
-
-                if ($key === false) {
-                    continue;
                 }
 
                 if (array_key_exists($key, $config)) {
