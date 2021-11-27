@@ -237,8 +237,6 @@ class Zend_Config implements Countable, Iterator
 
     /**
      * Defined by Countable interface
-     *
-     * @return int
      */
     public function count()
     {
