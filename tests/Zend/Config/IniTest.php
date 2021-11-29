@@ -214,20 +214,6 @@ class Zend_Config_IniTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    public function testZF739()
-    {
-        if (version_compare('5.3.0', PHP_VERSION) < 1) {
-            $this->markTestSkipped('PHP >= 5.3.0 does not allow : as a nest separator');
-            return;
-        }
-
-        $config = new Zend_Config_Ini($this->_iniFileSeparatorConfig, 'all', array('nestSeparator' => ':'));
-
-        $this->assertEquals('all', $config->hostname);
-        $this->assertEquals('live', $config->db->name);
-        $this->assertEquals('multi', $config->one->two->three);
-    }
-
     public function testZF2508NoSections()
     {
         $config = new Zend_Config_Ini($this->_iniFileNoSectionsConfig);
@@ -253,7 +239,7 @@ class Zend_Config_IniTest extends PHPUnit\Framework\TestCase
             $config = new Zend_Config_Ini($this->_iniFileInvalid);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertRegExp('/(Error parsing|parse error|syntax error, unexpected)/', $expected->getMessage());
+            $this->assertMatchesRegularExpression('/(Error parsing|parse error|syntax error, unexpected)/', $expected->getMessage());
         }
     }
 

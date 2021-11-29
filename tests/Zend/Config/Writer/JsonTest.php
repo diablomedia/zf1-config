@@ -158,6 +158,6 @@ class Zend_Config_Writer_JsonTest extends PHPUnit\Framework\TestCase
         $writer->setPrettyPrint(true);
         $writer->write();
         $testOutput = file_get_contents($this->_tempName);
-        $this->assertRegExp('/^\s+/m', $testOutput);
+        $this->assertMatchesRegularExpression('/^\s+/m', $testOutput);
     }
 }
