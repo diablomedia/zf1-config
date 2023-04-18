@@ -10,8 +10,8 @@
     "license": "BSD-3-Clause",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4 || ~8.0.0 || ~8.1.0",
-        "diablomedia/zendframework1-exception": "^1.0.4",
+        "php": "^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0",
+        "diablomedia/zendframework1-exception": "dev-master as 1.0.4",
         "diablomedia/zendframework1-json": "^1.0.6"
     },
     "autoload": {
@@ -29,8 +29,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5.10",
-        "phpstan/phpstan": "1.4.6",
-        "friendsofphp/php-cs-fixer": "3.8.0",
+        "phpstan/phpstan": "1.10.13",
+        "friendsofphp/php-cs-fixer": "3.16.0",
         "maglnet/composer-require-checker": "^3.0.0",
         "phpro/grumphp-shim": "^1.5.0"
     },
@@ -49,5 +49,10 @@
         "ext-SimpleXML": "Used for reading/writing XML config files",
         "ext-dom": "Used for reading/writing XML config files",
         "diablomedia/zendframework1-xml": "Required if reading/writing XML config files"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp-shim": true
+        }
     }
 }

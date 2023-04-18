@@ -34,6 +34,11 @@ class Zend_Config_IniTest extends PHPUnit\Framework\TestCase
     protected $_iniFileConfig;
     protected $_iniFileAllSectionsConfig;
     protected $_iniFileCircularConfig;
+    protected $_iniFileMultipleInheritanceConfig;
+    protected $_iniFileSeparatorConfig;
+    protected $_nonReadableConfig;
+    protected $_iniFileNoSectionsConfig;
+    protected $_iniFileInvalid;
 
     public function setUp(): void
     {
@@ -254,7 +259,7 @@ class Zend_Config_IniTest extends PHPUnit\Framework\TestCase
         );
 
         $this->assertTrue(isset(
-           $config->user->login->elements->password
+            $config->user->login->elements->password
         ));
 
         $this->assertEquals(
