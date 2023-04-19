@@ -20,16 +20,16 @@ parameters:
             path: src/Zend/Config/Ini.php
         # Callable can be an array
         -
-            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array{\$this\(Zend_Config_Ini\), ._loadFileErrorHandl….\} given\.#'
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int(, array)?\): bool\)\|null, array{\$this\(Zend_Config_Ini\), ._loadFileErrorHandl….\} given\.#'
             path: src/Zend/Config/Ini.php
         -
-            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\{\$this\(Zend_Config_Json\), ._loadFileErrorHandl….\} given\.#'
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int(, array)?\): bool\)\|null, array\{\$this\(Zend_Config_Json\), ._loadFileErrorHandl….\} given\.#'
             path: src/Zend/Config/Json.php
         -
-            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\{\$this\(Zend_Config_Xml\), ._loadFileErrorHandl….\} given\.#'
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int(, array)?\): bool\)\|null, array\{\$this\(Zend_Config_Xml\), ._loadFileErrorHandl….\} given\.#'
             path: src/Zend/Config/Xml.php
         -
-            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\{\$this\(Zend_Config_Yaml\), ._loadFileErrorHandl….\} given\.#'
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int(, array)?\): bool\)\|null, array\{\$this\(Zend_Config_Yaml\), ._loadFileErrorHandl….\} given\.#'
             path: src/Zend/Config/Yaml.php
 includes:
     - phpstan-php8.php
