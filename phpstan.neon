@@ -1,6 +1,5 @@
 parameters:
-    checkGenericClassInNonGenericObjectType: false
-    checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: false
     level: 8
     paths:
         - ./
@@ -8,6 +7,10 @@ parameters:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     ignoreErrors:
+        -
+            identifier: missingType.iterableValue
+        -
+            identifier: missingType.generics
         -
             message: '#Argument of an invalid type DOMDocument\|SimpleXMLElement\|false supplied for foreach, only iterables are supported\.#'
             path: src/Zend/Config/Xml.php
@@ -31,5 +34,18 @@ parameters:
         -
             message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int(, array)?\): bool\)\|null, array\{\$this\(Zend_Config_Yaml\), ._loadFileErrorHandl….\} given\.#'
             path: src/Zend/Config/Yaml.php
-includes:
-    - phpstan-php8.php
+        -
+            message: '#^Strict comparison using \!\=\= between list\<string\> and false will always evaluate to true\.$#'
+            identifier: notIdentical.alwaysTrue
+            count: 2
+            path: src/Zend/Config/Ini.php
+        -
+            message: '#^Negated boolean expression is always false\.$#'
+            identifier: booleanNot.alwaysFalse
+            count: 1
+            path: src/Zend/Config/Writer/Xml.php
+        -
+            message: '#^Negated boolean expression is always false\.$#'
+            identifier: booleanNot.alwaysFalse
+            count: 1
+            path: src/Zend/Config/Xml.php
