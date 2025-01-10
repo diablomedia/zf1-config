@@ -47,10 +47,8 @@ abstract class Zend_Config_Writer
      * Create a new adapter
      *
      * $options can only be passed as array or be omitted
-     *
-     * @param null|array $options
      */
-    public function __construct(array $options = null)
+    public function __construct(array|null $options = null)
     {
         if (is_array($options)) {
             $this->setOptions($options);
