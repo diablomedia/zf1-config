@@ -75,7 +75,6 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
      * Write configuration to file.
      *
      * @param string $filename
-     * @param Zend_Config|null $config
      * @param bool $exclusiveLock
      * @return void
      */
